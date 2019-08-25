@@ -6,13 +6,13 @@ namespace Hcode;
 use Rain\Tpl;
 //Vamos usar a classe que está em outro namespace
 
-class Page
+class Page //Classe onde as configurações do template estão
 {
 
-		private $tpl;
-		private $options = [];
+		private $tpl; //Atributo que irá definir o template
+		private $options = [];//Irá receber as variaveis para os templates
 		private $defaults = [
-			"data"=>[] //Irá receber as variaveis para os templates
+			"data"=>[] 
 		];
 
 		public function __construct($opts = array()) //Usando a base do exemplo do RainTPL
@@ -20,11 +20,12 @@ class Page
 
 			$this->options = array_merge($this->defaults, $opts); //O que for informado no __destruct sobrescreva o $default
 
-			$config = array(
-							"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . "/views/",
-							"cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/",
-							"debug"         => false // set to false to improve the speed
-						   );
+			$config = array
+							(
+							"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . "/views/", //Pasta onde estão os arquivos html do projeto
+							"cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/", //Pasta onde estão os caches
+							"debug"         => false //Deixo como falso para não gerar debugs
+							);
 
 			Tpl::configure( $config );
 
@@ -45,7 +46,7 @@ class Page
 			}
 
 		}
-
+						//Nome do Templete, Dados que vamos ter, Retornar HTML
 		public function setTpl($name, $data = array(), $returnHtml = false) 
 		{
 
