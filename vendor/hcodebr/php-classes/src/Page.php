@@ -12,7 +12,9 @@ class Page //Classe onde as configurações do template estão
 		private $tpl; //Atributo que irá definir o template
 		private $options = [];//Irá receber as variaveis para os templates
 		private $defaults = [
-			"data"=>[] 
+			"header"=>true,
+			"footer"=>true,
+			"data"=>[]
 		];
 
 		public function __construct($opts = array(), $tpl_dir = "/views/") //Usando a base do exemplo do RainTPL
@@ -34,7 +36,7 @@ class Page //Classe onde as configurações do template estão
 
 			$this->setData($this->options["data"]);
 
-			$this->tpl->draw("header");
+			if ($this->options["header"] === true) $this->tpl->draw("header");
 
 		}
 
@@ -59,7 +61,7 @@ class Page //Classe onde as configurações do template estão
 		public function __destruct() 
 		{
 
-		$this->tpl->draw("footer");
+		if ($this->options["footer"] === true) $this->tpl->draw("footer");
 
 		}
 
