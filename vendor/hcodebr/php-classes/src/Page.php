@@ -15,14 +15,14 @@ class Page //Classe onde as configurações do template estão
 			"data"=>[] 
 		];
 
-		public function __construct($opts = array()) //Usando a base do exemplo do RainTPL
+		public function __construct($opts = array(), $tpl_dir = "/views/") //Usando a base do exemplo do RainTPL
 		{
 
 			$this->options = array_merge($this->defaults, $opts); //O que for informado no __destruct sobrescreva o $default
 
 			$config = array
 							(
-							"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . "/views/", //Pasta onde estão os arquivos html do projeto
+							"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"] . $tpl_dir, //Pasta onde estão os arquivos html do projeto
 							"cache_dir"     => $_SERVER["DOCUMENT_ROOT"] . "/views-cache/", //Pasta onde estão os caches
 							"debug"         => false //Deixo como falso para não gerar debugs
 							);
