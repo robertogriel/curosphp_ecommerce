@@ -43,21 +43,21 @@ class User extends Model
 
 	}
 
-	public static function verifyLogin($inadmin = true)
+	public static function verifyLogin($inadmin = true) //Verificando se o usuário existe
 	{
 
-		if(
-			!isset($_SESSION[User::SESSION])
-			||
-			!$_SESSION[User::SESSION]
-			||
-			!(int)$_SESSION[User::SESSION]["iduser"] > 0
-			||
-			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin
+		if( //Se...
+			!isset($_SESSION[User::SESSION]) //...existe a sessão definida
+			|| //...ou...
+			!$_SESSION[User::SESSION] //...se a sessão for falsa
+			|| //...ou...
+			!(int)$_SESSION[User::SESSION]["iduser"] > 0 //Transfomo o resultado em inteiro e pergunto se é maior que zero
+			||//...ou...
+			(bool)$_SESSION[User::SESSION]["inadmin"] !== $inadmin //se no DB o usuário está como admin
 		) {
 
-			header("Location: /admin/login");
-			exit;
+			header("Location: /admin/login"); //Envio de volta para a página de login
+			exit; //Encerro o comando
 
 		}
 
