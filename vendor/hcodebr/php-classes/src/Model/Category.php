@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 namespace Hcode\Model; //Onde está essa classe
 
@@ -17,21 +17,16 @@ class Category extends Model
 		//Lista os usuários do banco de dados e faz comparação de duas tabelas
 	}
 
-public function save()
-	 {
-
-	 	$sql = new Sql();
-
-	 	$results = $sql->select("CALL sp_categories_save(:idcategory, :descategory)", array(
-	 		":idcategory"=>$this->getidcategory(),
-	 		":descategory"=>$this->getdescategory()
-	 	));
-
-	 	$this->setData($results[0]);
-
-	 	Category::updateFile();
-
-	 }
+	public function save()
+	{
+		$sql = new Sql();
+		$results = $sql->select("CALL sp_categories_save(:idcategory, :descategory)", array(
+			":idcategory"=>$this->getidcategory(),
+			":descategory"=>$this->getdescategory()
+		));
+		$this->setData($results[0]);
+		Category::updateFile();
+	}
 
 	 public function get($idcategory)
 	 {

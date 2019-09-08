@@ -1,4 +1,4 @@
-<?php 
+<?php  
 
 namespace Hcode;
 //Especificando onde está a classe que eu preciso

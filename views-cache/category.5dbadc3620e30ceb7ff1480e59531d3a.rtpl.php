@@ -15,7 +15,6 @@
     <div class="container">
         <div class="row">
             <?php $counter1=-1;  if( isset($produtos) && ( is_array($produtos) || $produtos instanceof Traversable ) && sizeof($produtos) ) foreach( $produtos as $key1 => $value1 ){ $counter1++; ?>
-
             <div class="col-md-3 col-sm-6">
                 <div class="single-shop-product">
                     <div class="product-upper">
@@ -33,7 +32,6 @@
             </div>
             </div>
             <?php } ?>
-
         
         <div class="row">
             <div class="col-md-12">
