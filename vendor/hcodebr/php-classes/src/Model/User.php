@@ -303,15 +303,12 @@ class User extends Model {
 
 	}
 	
-	public static function setFogotUsed($idrecovery)
+	public static function setForgotUsed($idrecovery)
 	{
-
 		$sql = new Sql();
-
 		$sql->query("UPDATE tb_userspasswordsrecoveries SET dtrecovery = NOW() WHERE idrecovery = :idrecovery", array(
 			":idrecovery"=>$idrecovery
 		));
-
 	}
 
 	public function setPassword($password)

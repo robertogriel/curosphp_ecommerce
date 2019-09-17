@@ -54,7 +54,7 @@ class Mailer
 	//Username to use for SMTP authentication
 	$this->mail->Username = Mailer::USERNAME;
 	//Password to use for SMTP authentication
-	$this->mail->Password = base64_decode('M2VRU21SQkF1NFRs');
+	$this->mail->Password = base64_decode('ZWFzeWVzdF9wYXNzd29yZF9ldmVyIQ==');
 	//Set who the message is to be sent from
 	$this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
 	//Set an alternative reply-to address
