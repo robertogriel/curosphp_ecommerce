@@ -6,6 +6,8 @@ use \Hcode\Model\Category;
 use \Hcode\Model\Cart;
 use \Hcode\Model\Address;
 use \Hcode\Model\User;
+use \Hcode\Model\Order;
+use \Hcode\Model\OrderStatus;
 
 $app->get("/cart", function(){
 	
@@ -181,8 +183,40 @@ $app->post("/checkout", function(){
 	
 	$address->save();
 	
-	header("Location: /order");
+	$cart = Cart::getFromSession();
+	
+	$totals = $cart->getCalculateTotal();
+	
+	$order = new Order();
+	
+	$order->setData([
+	'idcart'=>$cart->getidcart(),
+	'idaddress'=>$address->getidaddress(),
+	'iduser'=>$user->getiduser(),
+	'idstatus'=>OrderStatus::EM_ABERTO,
+	'vltotal'=>$cart->getvltotal()
+	]);
+	
+	$order->save();
+	
+	header("Location: /order/" . $order->getidorder());
 	exit;
 	
+	
+});
+
+$app->get("/order/:idorder", function($idorder){
+	
+	User::verifyLogin(false);
+	
+	$order = new Order();
+	
+	$order->get((int)$idorder);
+	
+	$page = new Page();
+	
+	$page->setTpl("payment", [
+		'order'=>$order->getValues()
+	]);
 	
 });

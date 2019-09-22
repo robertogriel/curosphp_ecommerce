@@ -17,6 +17,8 @@ require_once("login.php");
 
 require_once("cart.php");
 
+require_once("payment.php");
+
 require_once("admin.php");
 
 require_once("admin-users.php");
