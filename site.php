@@ -6,6 +6,8 @@ use \Hcode\Model\Category;
 use \Hcode\Model\Cart;
 use \Hcode\Model\Address;
 use \Hcode\Model\User;
+use \Hcode\Model\Order;
+use \Hcode\Model\OrderStatus;
 
 /* Chamando a Página Inicial (index.html) */
 $app->get('/', function() {
@@ -63,6 +65,7 @@ $app->get("/products/:desurl", function($desurl){
 		'categories'=>$product->getCategories()
 	]);
 });
+
 
 $app->get("/profile", function(){
 	
@@ -130,6 +133,48 @@ $app->post("/profile", function(){
 	header("Location: /profile");
 	exit;
 	
+});
+
+$app->get("/profile/orders", function(){
+	
+	User::verifyLogin(false);
+	
+	$user = User::getFromSession();
+	
+	$page = new Page();
+	
+	$page->setTpl("profile-orders", [
+		'orders'=>$user->getOrders()
+	]);
+	
+	
+});
+
+
+$app->get("/profile/orders/:idorder", function($idorder){
+		
+	User::verifyLogin(false);
+														 
+	$order = new Order();
+	
+	$order->get((int)$idorder);
+	
+	$cart = new Cart();
+	
+	$cart->get((int)$order->getidcart());	
+	
+	$cart->getCalculateTotal();
+	
+	$user = User::getFromSession();
+	
+	$page = new Page();
+	
+	$page->setTpl("profile-orders-detail", [
+		'order'=>$order->getValues(),
+		'cart'=>$cart->getValues(),
+		'products'=>$cart->getProducts()
+	]);
+												
 });
 
 

@@ -185,7 +185,7 @@ $app->post("/checkout", function(){
 	
 	$cart = Cart::getFromSession();
 	
-	$totals = $cart->getCalculateTotal();
+	$cart->getCalculateTotal();
 	
 	$order = new Order();
 	
