@@ -62,7 +62,7 @@ $app->get("/order/:idorder/pagseguro", function($idorder){
 
 
 
-$app->get("/boleto/:idorder", function($idorder){
+$app->get("/order/:idorder/boleto", function($idorder){
 	
 	User::verifyLogin(false);
 	

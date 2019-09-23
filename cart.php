@@ -199,6 +199,10 @@ $app->post("/checkout", function(){
 	
 	$order->save();
 	
+	$_SESSION[Cart::SESSION] = NULL;
+	
+	session_regenerate_id();
+	
 	switch ((int)$_POST['payment-method']) {
 			
 		case 1:
@@ -213,6 +217,13 @@ $app->post("/checkout", function(){
 			header("Location: /order/" . $order->getidorder() . "/paypal");
 			exit;
 			
+		break;
+			
+		case 3:
+			
+			header("Location: /order/" . $order->getidorder() . "/boleto");
+			exit;
+		
 		break;
 		
 	}
